@@ -13,10 +13,26 @@
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background: linear-gradient(-45deg, #09090b, #2d1004, #1c0802, #09090b);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fafafa;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* ===== Scrollbar ===== */
@@ -25,44 +41,44 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #27272a;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3f3f46;
 }
 
 /* ===== Glassmorphism Cards ===== */
 .glass-card {
-  background: rgba(30, 41, 59, 0.6);
+  background: rgba(24, 24, 27, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+  border: 1px solid rgba(39, 39, 42, 0.5);
   border-radius: 16px;
 }
 
 .glass-card-hover:hover {
-  border-color: rgba(37, 99, 235, 0.5);
-  box-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.1);
   transform: translateY(-2px);
 }
 
 /* ===== Grid Background Pattern ===== */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 /* ===== Glow Effects ===== */
 .glow-primary {
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.3), 0 0 30px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.3), 0 0 30px rgba(249, 115, 22, 0.1);
 }
 
 .glow-safe {
@@ -79,11 +95,11 @@ body {
 
 /* ===== Input Styles ===== */
 .cyber-input {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid #334155;
+  background: rgba(9, 9, 11, 0.8);
+  border: 1px solid #27272a;
   border-radius: 12px;
   padding: 14px 18px;
-  color: #f1f5f9;
+  color: #fafafa;
   font-size: 15px;
   transition: all 0.3s ease;
   width: 100%;
@@ -91,17 +107,17 @@ body {
 
 .cyber-input:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), 0 0 15px rgba(37, 99, 235, 0.1);
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15), 0 0 15px rgba(249, 115, 22, 0.1);
 }
 
 .cyber-input::placeholder {
-  color: #64748b;
+  color: #a1a1aa;
 }
 
 /* ===== Button Styles ===== */
 .cyber-btn {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #f97316, #ea580c);
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -116,7 +132,7 @@ body {
 
 .cyber-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
 }
 
 .cyber-btn:active:not(:disabled) {
@@ -161,7 +177,7 @@ body {
   position: fixed;
   width: 2px;
   height: 2px;
-  background: rgba(37, 99, 235, 0.4);
+  background: rgba(249, 115, 22, 0.4);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -175,7 +191,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3), transparent);
   animation: scanLine 8s linear infinite;
   z-index: 1;
   pointer-events: none;

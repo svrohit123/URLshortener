@@ -7,17 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'cyber-bg': '#0f172a',
-        'cyber-surface': '#1e293b',
-        'cyber-card': '#1e293b',
-        'cyber-border': '#334155',
-        'cyber-primary': '#2563eb',
-        'cyber-primary-hover': '#1d4ed8',
-        'cyber-safe': '#22c55e',
-        'cyber-warning': '#eab308',
-        'cyber-danger': '#ef4444',
-        'cyber-text': '#f1f5f9',
-        'cyber-text-muted': '#94a3b8',
+        'cyber-bg': '#09090b',         // Very dark neutral
+        'cyber-surface': '#18181b',    // Dark neutral
+        'cyber-card': '#18181b',
+        'cyber-border': '#27272a',     // Subtle border
+        'cyber-primary': '#f97316',    // Vibrant Orange-500
+        'cyber-primary-hover': '#ea580c', // Orange-600
+        'cyber-safe': '#10b981',       // Emerald
+        'cyber-warning': '#f59e0b',    // Amber
+        'cyber-danger': '#ef4444',     // Red
+        'cyber-text': '#fafafa',       // Zinc-50
+        'cyber-text-muted': '#a1a1aa', // Zinc-400
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -34,8 +34,8 @@ export default {
       },
       keyframes: {
         glow: {
-          '0%': { boxShadow: '0 0 5px rgba(37, 99, 235, 0.3), 0 0 10px rgba(37, 99, 235, 0.2)' },
-          '100%': { boxShadow: '0 0 20px rgba(37, 99, 235, 0.5), 0 0 40px rgba(37, 99, 235, 0.3)' },
+          '0%': { boxShadow: '0 0 5px rgba(249, 115, 22, 0.3), 0 0 10px rgba(249, 115, 22, 0.2)' },
+          '100%': { boxShadow: '0 0 20px rgba(249, 115, 22, 0.5), 0 0 40px rgba(249, 115, 22, 0.3)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
@@ -59,8 +59,8 @@ export default {
         },
       },
       backgroundImage: {
-        'cyber-gradient': 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
-        'glow-gradient': 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.15) 0%, transparent 70%)',
+        'cyber-gradient': 'linear-gradient(135deg, #09090b 0%, #18181b 50%, #09090b 100%)',
+        'glow-gradient': 'radial-gradient(ellipse at center, rgba(249, 115, 22, 0.15) 0%, transparent 70%)',
       },
     },
   },

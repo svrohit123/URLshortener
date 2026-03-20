@@ -16,8 +16,8 @@ export default function Navbar() {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                    ? 'bg-cyber-bg/90 backdrop-blur-xl border-b border-cyber-border/50 shadow-lg shadow-black/20'
-                    : 'bg-transparent'
+                ? 'bg-cyber-bg/90 backdrop-blur-xl border-b border-cyber-border/50 shadow-lg shadow-black/20'
+                : 'bg-transparent'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-6">
@@ -31,8 +31,8 @@ export default function Navbar() {
                                 </svg>
                             </div>
                         </div>
-                        <span className="text-lg font-bold bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">
-                            SecureLink
+                        <span className="text-lg font-bold bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
+                            Cutify
                         </span>
                     </Link>
 
@@ -41,8 +41,8 @@ export default function Navbar() {
                         <Link
                             to="/"
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${isActive('/')
-                                    ? 'text-cyber-primary bg-cyber-primary/10'
-                                    : 'text-cyber-text-muted hover:text-white hover:bg-white/5'
+                                ? 'text-cyber-primary bg-cyber-primary/10'
+                                : 'text-cyber-text-muted hover:text-white hover:bg-white/5'
                                 }`}
                         >
                             <span className="flex items-center gap-2">
@@ -55,8 +55,8 @@ export default function Navbar() {
                         <Link
                             to="/dashboard"
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${isActive('/dashboard')
-                                    ? 'text-cyber-primary bg-cyber-primary/10'
-                                    : 'text-cyber-text-muted hover:text-white hover:bg-white/5'
+                                ? 'text-cyber-primary bg-cyber-primary/10'
+                                : 'text-cyber-text-muted hover:text-white hover:bg-white/5'
                                 }`}
                         >
                             <span className="flex items-center gap-2">

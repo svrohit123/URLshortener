@@ -3,6 +3,36 @@ import URLForm from '../components/URLForm';
 import ResultCard from '../components/ResultCard';
 import { shortenUrl } from '../services/api';
 
+const BinaryText = ({ text }) => {
+    const [displayText, setDisplayText] = useState(text);
+    const [isHovering, setIsHovering] = useState(false);
+
+    useEffect(() => {
+        let interval;
+        if (isHovering) {
+            interval = setInterval(() => {
+                setDisplayText(text.split('').map(char => {
+                    if (char === ' ') return ' ';
+                    return Math.random() > 0.5 ? '1' : '0';
+                }).join(''));
+            }, 50);
+        } else {
+            setDisplayText(text);
+        }
+        return () => clearInterval(interval);
+    }, [isHovering, text]);
+
+    return (
+        <span
+            onMouseOver={() => setIsHovering(true)}
+            onMouseOut={() => setIsHovering(false)}
+            className="cursor-default inline-block"
+        >
+            {displayText}
+        </span>
+    );
+};
+
 export default function Home() {
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -62,69 +92,96 @@ export default function Home() {
 
             {/* Content */}
             <div className="relative z-10 pt-28 pb-16 px-6">
-                <div className="max-w-2xl mx-auto">
-                    {/* Hero Section */}
-                    <div className="text-center mb-12 animate-fade-in">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyber-primary/10 border border-cyber-primary/20 text-cyber-primary text-xs font-medium mb-6">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-safe opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyber-safe"></span>
-                            </span>
-                            Security-First URL Shortener
-                        </div>
+                <div className="max-w-7xl mx-auto">
 
-                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-                            <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
-                                Shorten URLs.
-                            </span>
-                            <br />
-                            <span className="bg-gradient-to-r from-cyber-primary to-blue-400 bg-clip-text text-transparent">
-                                Stay Secure.
-                            </span>
-                        </h1>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-                        <p className="text-cyber-text-muted text-base md:text-lg max-w-lg mx-auto leading-relaxed">
-                            Create custom short links with safety-first validation.
-                            Every URL is checked before shortening.
-                        </p>
-                    </div>
+                        {/* Left Column: Hero & About */}
+                        <div className="space-y-12">
 
-                    {/* Form Card */}
-                    <div className="glass-card p-6 md:p-8 mb-8 scan-overlay animate-slide-up">
-                        <URLForm onSubmit={handleSubmit} loading={loading} />
-                    </div>
+                            {/* Hero Section */}
+                            <div className="text-left animate-fade-in pt-4">
+                                <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+                                    <span className="bg-gradient-to-r from-white via-orange-100 to-orange-300 bg-clip-text text-transparent inline-block">
+                                        <BinaryText text="Shorten URLs." />
+                                    </span>
+                                    <br />
+                                    <span className="bg-gradient-to-r from-cyber-primary to-orange-400 bg-clip-text text-transparent inline-block mt-2">
+                                        <BinaryText text="Share Faster." />
+                                    </span>
+                                </h1>
 
-                    {/* Error Message */}
-                    {error && (
-                        <div className="glass-card p-4 mb-8 border-cyber-danger/30 bg-cyber-danger/5 animate-slide-up">
-                            <div className="flex items-start gap-3">
-                                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-cyber-danger/10 flex items-center justify-center">
-                                    <svg className="w-4 h-4 text-cyber-danger" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 className="text-sm font-semibold text-cyber-danger">Error</h4>
-                                    <p className="text-sm text-cyber-danger/80 mt-0.5">{error}</p>
+                                <p className="text-cyber-text-muted text-lg md:text-xl max-w-lg leading-relaxed">
+                                    Create custom short links instantly.
+                                    Fast, reliable, and beautifully branded URLs.
+                                </p>
+                            </div>
+
+                            {/* About Section */}
+                            <div className="animate-fade-in relative">
+                                <div className="glass-card p-8 md:p-10 relative overflow-hidden">
+                                    {/* Decorative ambient glow inside the card */}
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-cyber-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+
+                                    <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-3 relative z-10">
+                                        <svg className="w-7 h-7 text-cyber-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        About Cutify
+                                    </h2>
+
+                                    <div className="space-y-4 text-cyber-text-muted leading-relaxed relative z-10 text-[15px]">
+                                        <p>
+                                            Cutify was built with a singular vision: to make long, complex URLs a thing of the past. Whether you are marketing a new product, sharing a dashboard link, or sending a direct message to a friend, Cutify wraps your original link into a beautiful, personalized, branded slug.
+                                        </p>
+                                        <p>
+                                            Powered by a high-performance Spring Boot backend and an ultra-modern React interface, links are processed and redirected with near-zero latency. Every freshly generated link perfectly bridges the gap between desktop and mobile by instantly spinning up a lightning-fast, scannable QR Code.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    )}
 
-                    {/* Result */}
-                    {result && <ResultCard result={result} />}
+                        {/* Right Column: Form & Results */}
+                        <div className="space-y-8 lg:sticky lg:top-32">
+                            {/* Form Card */}
+                            <div className="glass-card p-6 md:p-8 scan-overlay animate-slide-up">
+                                <URLForm onSubmit={handleSubmit} loading={loading} />
+                            </div>
 
-                    {/* Features */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 animate-fade-in">
+                            {/* Error Message */}
+                            {error && (
+                                <div className="glass-card p-4 border-cyber-danger/30 bg-cyber-danger/5 animate-slide-up">
+                                    <div className="flex items-start gap-3">
+                                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-cyber-danger/10 flex items-center justify-center">
+                                            <svg className="w-4 h-4 text-cyber-danger" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-cyber-danger">Error</h4>
+                                            <p className="text-sm text-cyber-danger/80 mt-0.5">{error}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Result */}
+                            {result && <ResultCard result={result} />}
+                        </div>
+                    </div>
+
+                    {/* Features Grid (Bottom Full Width) */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 mb-8 animate-fade-in">
                         {[
                             {
                                 icon: (
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                     </svg>
                                 ),
-                                title: 'Security Scan',
-                                desc: 'Every URL is validated and checked before shortening',
+                                title: 'Custom Slugs',
+                                desc: 'Personalize your links with memorable, distinct words',
                             },
                             {
                                 icon: (
@@ -147,13 +204,13 @@ export default function Home() {
                         ].map((feature, i) => (
                             <div
                                 key={i}
-                                className="glass-card glass-card-hover p-5 text-center transition-all duration-300 cursor-default"
+                                className="glass-card glass-card-hover p-6 text-center transition-all duration-300 cursor-default"
                             >
-                                <div className="w-12 h-12 rounded-xl bg-cyber-primary/10 flex items-center justify-center mx-auto mb-3 text-cyber-primary">
+                                <div className="w-12 h-12 rounded-xl bg-cyber-primary/10 flex items-center justify-center mx-auto mb-4 text-cyber-primary">
                                     {feature.icon}
                                 </div>
-                                <h3 className="text-sm font-semibold text-white mb-1">{feature.title}</h3>
-                                <p className="text-xs text-cyber-text-muted leading-relaxed">{feature.desc}</p>
+                                <h3 className="text-[15px] font-semibold text-white mb-2">{feature.title}</h3>
+                                <p className="text-[13px] text-cyber-text-muted leading-relaxed">{feature.desc}</p>
                             </div>
                         ))}
                     </div>

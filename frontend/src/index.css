@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ===== Glassmorphism Cards ===== */
+.glass-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 16px;
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ===== Grid Background Pattern ===== */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ===== Glow Effects ===== */
+.glow-primary {
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.3), 0 0 30px rgba(37, 99, 235, 0.1);
+}
+
+.glow-safe {
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+}
+
+.glow-warning {
+  box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
+}
+
+.glow-danger {
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+/* ===== Input Styles ===== */
+.cyber-input {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #f1f5f9;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), 0 0 15px rgba(37, 99, 235, 0.1);
+}
+
+.cyber-input::placeholder {
+  color: #64748b;
+}
+
+/* ===== Button Styles ===== */
+.cyber-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+.cyber-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.cyber-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cyber-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.cyber-btn:hover::after {
+  left: 100%;
+}
+
+/* ===== Particle Animation ===== */
+@keyframes particle {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100vh) translateX(50px);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: rgba(37, 99, 235, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Scan Line Overlay ===== */
+.scan-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+  animation: scanLine 8s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== Toast Notification ===== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  animation: slideUp 0.3s ease-out;
+}
+
+/* ===== Pulse Ring ===== */
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: pulseRing 1.5s ease-out infinite;
+}

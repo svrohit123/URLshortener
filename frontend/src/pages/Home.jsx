@@ -84,8 +84,8 @@ export default function Home() {
                         </h1>
 
                         <p className="text-cyber-text-muted text-base md:text-lg max-w-lg mx-auto leading-relaxed">
-                            Create custom short links with built-in malware detection.
-                            Every URL is scanned before shortening.
+                            Create custom short links with safety-first validation.
+                            Every URL is checked before shortening.
                         </p>
                     </div>
 
@@ -124,7 +124,7 @@ export default function Home() {
                                     </svg>
                                 ),
                                 title: 'Security Scan',
-                                desc: 'Every URL checked against Google Safe Browsing & VirusTotal',
+                                desc: 'Every URL is validated and checked before shortening',
                             },
                             {
                                 icon: (

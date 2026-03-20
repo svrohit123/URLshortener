@@ -25,7 +25,7 @@ export default function App() {
               <span>SecureLink — Security-First URL Shortener</span>
             </div>
             <p className="text-xs text-cyber-text-muted/60">
-              Built with Spring Boot & React • Powered by Google Safe Browsing & VirusTotal
+              Built with Spring Boot & React
             </p>
           </div>
         </footer>

@@ -130,7 +130,7 @@ export default function URLForm({ onSubmit, loading }) {
 
             {/* Security Notice */}
             <p className="text-center text-xs text-cyber-text-muted">
-                🔒 URLs are scanned using Google Safe Browsing & VirusTotal before shortening
+                🔒 URL safety checks are processed before shortening
             </p>
         </form>
     );

@@ -94,13 +94,13 @@ export default function Home() {
             <div className="relative z-10 pt-28 pb-16 px-6">
                 <div className="max-w-7xl mx-auto">
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[calc(100vh-12rem)] pb-12">
 
                         {/* Left Column: Hero & About */}
-                        <div className="space-y-12">
+                        <div className="space-y-10">
 
                             {/* Hero Section */}
-                            <div className="text-left animate-fade-in pt-4">
+                            <div className="text-left animate-fade-in">
                                 <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
                                     <span className="bg-gradient-to-r from-white via-orange-100 to-orange-300 bg-clip-text text-transparent inline-block">
                                         <BinaryText text="Shorten URLs." />
@@ -143,9 +143,9 @@ export default function Home() {
                         </div>
 
                         {/* Right Column: Form & Results */}
-                        <div className="space-y-8 lg:sticky lg:top-32">
+                        <div className="space-y-8 flex flex-col justify-center">
                             {/* Form Card */}
-                            <div className="glass-card p-6 md:p-8 scan-overlay animate-slide-up">
+                            <div className="glass-card p-8 md:p-10 scan-overlay animate-slide-up shadow-2xl shadow-cyber-primary/20">
                                 <URLForm onSubmit={handleSubmit} loading={loading} />
                             </div>
 

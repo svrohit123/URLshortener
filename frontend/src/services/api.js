@@ -13,10 +13,11 @@ const api = axios.create({
 /**
  * Shorten a URL with safety checks.
  */
-export const shortenUrl = async (originalUrl, customSlug) => {
+export const shortenUrl = async (originalUrl, customSlug, password) => {
     const response = await api.post('/shorten', {
         originalUrl,
         customSlug,
+        password: password || null,
     });
     return response.data;
 };
@@ -42,6 +43,22 @@ export const getAllUrls = async () => {
  */
 export const deleteUrl = async (id) => {
     const response = await api.delete(`/urls/${id}`);
+    return response.data;
+};
+
+/**
+ * Check if the URL has a password, or fetch it directly.
+ */
+export const getUrlStatus = async (slug) => {
+    const response = await api.get(`/urls/${slug}/status`);
+    return response.data;
+};
+
+/**
+ * Unlock a password-protected URL.
+ */
+export const unlockUrl = async (slug, password) => {
+    const response = await api.post(`/urls/${slug}/unlock`, { password });
     return response.data;
 };
 

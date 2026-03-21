@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import RedirectHandler from './pages/RedirectHandler';
 
 export default function App() {
   const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
@@ -32,6 +33,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/:slug" element={<RedirectHandler />} />
             </Routes>
           </div>
 

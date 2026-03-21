@@ -3,6 +3,7 @@ import { useState } from 'react';
 export default function URLForm({ onSubmit, loading }) {
     const [originalUrl, setOriginalUrl] = useState('');
     const [customSlug, setCustomSlug] = useState('');
+    const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
 
     const validate = () => {
@@ -33,7 +34,7 @@ export default function URLForm({ onSubmit, loading }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            onSubmit(originalUrl, customSlug.toLowerCase());
+            onSubmit(originalUrl, customSlug.toLowerCase(), password);
         }
     };
 
@@ -102,6 +103,25 @@ export default function URLForm({ onSubmit, loading }) {
                     )}
                     <p className="text-xs text-cyber-text-muted">{customSlug.length}/30</p>
                 </div>
+            </div>
+
+            {/* Password Input (Optional) */}
+            <div>
+                <label className="block text-sm font-medium text-cyber-text-muted mb-2">
+                    <span className="flex items-center gap-2">
+                        <svg className="w-4 h-4 text-cyber-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        Set Password (Optional)
+                    </span>
+                </label>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Leave blank for public access"
+                    className="cyber-input"
+                />
             </div>
 
             {/* Submit Button */}

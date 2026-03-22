@@ -1,4 +1,3 @@
-C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\controller\RedirectController.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\exception\GlobalExceptionHandler.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\exception\SlugAlreadyExistsException.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\scheduler\ExpiryScheduler.java
@@ -8,7 +7,6 @@ C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\dto\ErrorResponse.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\service\UrlShortenerService.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\repository\UrlMappingRepository.java
-C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\config\CacheConfig.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\dto\QrRequest.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\config\CorsConfig.java
 C:\Users\svroh\OneDrive\Documents\Desktop\URLshortener\URLshortener\backend\src\main\java\com\urlshortener\controller\UrlController.java

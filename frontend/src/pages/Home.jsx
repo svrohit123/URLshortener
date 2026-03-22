@@ -51,13 +51,13 @@ export default function Home() {
         setParticles(generated);
     }, []);
 
-    const handleSubmit = async (originalUrl, customSlug) => {
+    const handleSubmit = async (originalUrl, customSlug, password) => {
         setLoading(true);
         setError(null);
         setResult(null);
 
         try {
-            const data = await shortenUrl(originalUrl, customSlug);
+            const data = await shortenUrl(originalUrl, customSlug, password);
             setResult(data);
         } catch (err) {
             const message =

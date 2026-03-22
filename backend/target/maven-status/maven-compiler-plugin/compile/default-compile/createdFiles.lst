@@ -8,14 +8,10 @@ com\urlshortener\controller\UrlController.class
 com\urlshortener\dto\ShortenRequest.class
 com\urlshortener\dto\ShortenResponse$ShortenResponseBuilder.class
 com\urlshortener\model\UrlMapping.class
-com\urlshortener\config\CorsConfig.class
 com\urlshortener\scheduler\ExpiryScheduler.class
-com\urlshortener\controller\RedirectController.class
 com\urlshortener\service\QrCodeService.class
 com\urlshortener\repository\UrlMappingRepository.class
-com\urlshortener\config\CacheConfig.class
 com\urlshortener\dto\ErrorResponse$ErrorResponseBuilder.class
-com\urlshortener\UrlShortenerApplication.class
 com\urlshortener\model\UrlMapping$UrlMappingBuilder.class
 com\urlshortener\exception\UrlNotFoundException.class
 com\urlshortener\exception\GlobalExceptionHandler.class

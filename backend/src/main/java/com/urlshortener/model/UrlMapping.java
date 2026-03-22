@@ -37,6 +37,9 @@ public class UrlMapping {
     @Column(name = "expiry_date", nullable = false)
     private LocalDateTime expiryDate;
 
+    @Column(name = "password", length = 100)
+    private String password;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

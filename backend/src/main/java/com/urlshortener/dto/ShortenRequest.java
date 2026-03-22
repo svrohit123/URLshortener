@@ -16,4 +16,6 @@ public class ShortenRequest {
     @Size(min = 3, max = 30, message = "Slug must be between 3 and 30 characters")
     @Pattern(regexp = "^[a-zA-Z0-9-]+$", message = "Slug can only contain letters, numbers, and hyphens")
     private String customSlug;
+
+    private String password; // Optional
 }

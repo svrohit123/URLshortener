@@ -19,4 +19,5 @@ public class ShortenResponse {
     private long clickCount;
     private LocalDateTime createdAt;
     private LocalDateTime expiryDate;
+    private boolean hasPassword;
 }

@@ -56,4 +56,38 @@ public class UrlController {
         urlShortenerService.deleteUrl(id);
         return ResponseEntity.noContent().build();
     }
+
+    /**
+     * GET /api/urls/{slug}/status — Check if a URL has a password, or just grab the
+     * link directly.
+     */
+    @GetMapping("/urls/{slug}/status")
+    public ResponseEntity<Map<String, Object>> getUrlStatus(@PathVariable String slug) {
+        com.urlshortener.model.UrlMapping mapping = urlShortenerService.getUrlMappingBySlug(slug);
+        boolean hasPassword = mapping.getPassword() != null && !mapping.getPassword().trim().isEmpty();
+
+        if (hasPassword) {
+            return ResponseEntity.ok(Map.of("hasPassword", true));
+        } else {
+            urlShortenerService.incrementClickCount(slug);
+            return ResponseEntity.ok(Map.of("hasPassword", false, "originalUrl", mapping.getOriginalUrl()));
+        }
+    }
+
+    /**
+     * POST /api/urls/{slug}/unlock — Unlock a password protected URL.
+     */
+    @PostMapping("/urls/{slug}/unlock")
+    public ResponseEntity<Map<String, String>> unlockUrl(@PathVariable String slug,
+            @RequestBody Map<String, String> body) {
+        com.urlshortener.model.UrlMapping mapping = urlShortenerService.getUrlMappingBySlug(slug);
+        String providedPassword = body.get("password");
+
+        if (mapping.getPassword() != null && mapping.getPassword().equals(providedPassword)) {
+            urlShortenerService.incrementClickCount(slug);
+            return ResponseEntity.ok(Map.of("originalUrl", mapping.getOriginalUrl()));
+        } else {
+            return ResponseEntity.status(403).body(Map.of("error", "Incorrect password"));
+        }
+    }
 }

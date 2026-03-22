@@ -45,6 +45,7 @@ public class UrlShortenerService {
         UrlMapping urlMapping = UrlMapping.builder()
                 .originalUrl(request.getOriginalUrl())
                 .customSlug(slug)
+                .password(request.getPassword())
                 .riskScore(0)
                 .isSafe(true)
                 .build();
@@ -64,9 +65,13 @@ public class UrlShortenerService {
     @Cacheable(value = "urls", key = "#slug")
     @Transactional(readOnly = true)
     public String getOriginalUrl(String slug) {
-        UrlMapping mapping = urlMappingRepository.findByCustomSlug(slug)
+        return getUrlMappingBySlug(slug).getOriginalUrl();
+    }
+
+    @Transactional(readOnly = true)
+    public UrlMapping getUrlMappingBySlug(String slug) {
+        return urlMappingRepository.findByCustomSlug(slug)
                 .orElseThrow(() -> new UrlNotFoundException("Short URL not found: " + slug));
-        return mapping.getOriginalUrl();
     }
 
     /**
@@ -125,6 +130,7 @@ public class UrlShortenerService {
                 .clickCount(mapping.getClickCount())
                 .createdAt(mapping.getCreatedAt())
                 .expiryDate(mapping.getExpiryDate())
+                .hasPassword(mapping.getPassword() != null && !mapping.getPassword().trim().isEmpty())
                 .build();
     }
 }

@@ -112,8 +112,21 @@ public class UrlShortenerService {
     @CacheEvict(value = "urls", allEntries = true)
     @Transactional
     public void deleteUrl(Long id) {
-        urlMappingRepository.deleteById(id);
-        log.info("Deleted URL mapping with ID {}", id);
+        UrlMapping mapping = urlMappingRepository.findById(id)
+                .orElseThrow(() -> new UrlNotFoundException("URL not found for id: " + id));
+        urlMappingRepository.delete(mapping);
+        log.info("Deleted URL mapping with ID {} (slug: {})", id, mapping.getCustomSlug());
+    }
+
+    /**
+     * Delete all URL mappings.
+     */
+    @CacheEvict(value = "urls", allEntries = true)
+    @Transactional
+    public void deleteAllUrls() {
+        long count = urlMappingRepository.count();
+        urlMappingRepository.deleteAll();
+        log.info("Deleted all {} URL mappings", count);
     }
 
     private ShortenResponse buildResponse(UrlMapping mapping, String shortUrl, String safetyStatus,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllUrls, deleteUrl } from '../services/api';
+import { getAllUrls, deleteUrl, deleteAllUrls } from '../services/api';
 
 export default function Dashboard() {
     const [urls, setUrls] = useState([]);
@@ -41,12 +41,43 @@ export default function Dashboard() {
     };
 
     const handleDelete = async (id) => {
+        if (id == null || Number.isNaN(Number(id))) {
+            alert('Invalid link id. Please refresh the page and try again.');
+            return;
+        }
         if (!window.confirm('Are you sure you want to delete this URL? You cannot undo this action.')) return;
         try {
-            await deleteUrl(id);
-            setUrls(urls.filter(url => url.id !== id));
+            await deleteUrl(Number(id));
+            setUrls((prev) => prev.filter((url) => url.id !== Number(id)));
         } catch (err) {
-            alert('Failed to delete URL. Please try again.');
+            const msg =
+                err.response?.data?.message ||
+                err.response?.data?.error ||
+                err.message ||
+                'Unknown error';
+            alert('Failed to delete URL: ' + msg);
+        }
+    };
+
+    const handleDeleteAll = async () => {
+        if (urls.length === 0) {
+            alert('No URLs to delete.');
+            return;
+        }
+        if (!window.confirm(`Are you sure you want to delete all ${urls.length} URLs? This action cannot be undone.`)) return;
+        try {
+            setLoading(true);
+            await deleteAllUrls();
+            setUrls([]);
+        } catch (err) {
+            const msg =
+                err.response?.data?.message ||
+                err.response?.data?.error ||
+                err.message ||
+                'Unknown error';
+            alert('Failed to delete all URLs: ' + msg);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -74,6 +105,18 @@ export default function Dashboard() {
                             </svg>
                             Refresh
                         </button>
+                        {urls.length > 0 && (
+                            <button
+                                onClick={handleDeleteAll}
+                                disabled={loading}
+                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-sm text-red-500 hover:text-red-400 hover:border-red-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                            >
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                Delete All
+                            </button>
+                        )}
                         <div className="px-4 py-2 rounded-lg bg-cyber-primary/10 border border-cyber-primary/20 text-sm text-cyber-primary font-medium">
                             {urls.length} URL{urls.length !== 1 ? 's' : ''}
                         </div>

@@ -47,6 +47,14 @@ export const deleteUrl = async (id) => {
 };
 
 /**
+ * Delete all shortened URLs.
+ */
+export const deleteAllUrls = async () => {
+    const response = await api.delete('/urls');
+    return response.data;
+};
+
+/**
  * Check if the URL has a password, or fetch it directly.
  */
 export const getUrlStatus = async (slug) => {

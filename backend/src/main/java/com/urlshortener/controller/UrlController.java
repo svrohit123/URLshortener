@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.RequestMethod;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
+        RequestMethod.OPTIONS })
 public class UrlController {
 
     private final UrlShortenerService urlShortenerService;
@@ -54,6 +57,15 @@ public class UrlController {
     @DeleteMapping("/urls/{id}")
     public ResponseEntity<Void> deleteUrl(@PathVariable Long id) {
         urlShortenerService.deleteUrl(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * DELETE /api/urls — Delete all URLs.
+     */
+    @DeleteMapping("/urls")
+    public ResponseEntity<Void> deleteAllUrls() {
+        urlShortenerService.deleteAllUrls();
         return ResponseEntity.noContent().build();
     }
 

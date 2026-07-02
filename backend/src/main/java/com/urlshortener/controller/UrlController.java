@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.RequestMethod;
-
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -102,4 +100,5 @@ public class UrlController {
             return ResponseEntity.status(403).body(Map.of("error", "Incorrect password"));
         }
     }
+
 }
